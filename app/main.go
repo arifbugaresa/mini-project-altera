@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/arifbugaresa/mini-project-altera/api/v1"
 	config "github.com/arifbugaresa/mini-project-altera/config"
+	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -16,6 +18,17 @@ func main() {
 	// initialize database connection
 	dbGormPostgres := newDatabaseConnection(config)
 	defer CloseDatabaseConnection(dbGormPostgres)
+
+	// create echo http
+	e := echo.New()
+	api.APIController(e)
+
+	// run server
+	address := fmt.Sprintf("localhost:%s", strconv.Itoa(config.AppPort))
+	err := e.Start(address)
+	if err != nil {
+		log.Info("Shutting down the server")
+	}
 
 }
 
