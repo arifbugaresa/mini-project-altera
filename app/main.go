@@ -30,7 +30,6 @@ func main() {
 	productService := productService.NewService(productRepo)
 	productController := productController.NewController(productService)
 
-
 	// create echo http
 	e := echo.New()
 	api.APIController(e, productController)

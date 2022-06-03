@@ -5,7 +5,7 @@ import (
 	"github.com/arifbugaresa/mini-project-altera/business"
 )
 
-// addProduct is used for add new product
+// InsertProduct is used for add new product
 func (s *service) InsertProduct(userParam request.InsertProductRequest) error{
 
 	// validate and read struct input product
@@ -15,7 +15,7 @@ func (s *service) InsertProduct(userParam request.InsertProductRequest) error{
 	}
 
 	// insert into database
-	err = s.repository.SaveProduct(product)
+	err = s.repository.InsertProduct(product)
 	if err != nil {
 		return err
 	}

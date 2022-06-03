@@ -16,5 +16,7 @@ func APIController(e *echo.Echo, productController *product.Controller)  {
 	// Product
 	productV1 := e.Group("v1/products")
 	productV1.POST("", productController.InsertProduct)
-
+	productV1.GET("", productController.FindAllProduct)
+	productV1.GET("/:id", productController.FindProductByID)
+	productV1.DELETE("/:id", productController.DeleteProductByID)
 }
