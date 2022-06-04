@@ -1,0 +1,25 @@
+version: '3'
+services:
+  postgres-mini-project-altera:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=rahasia
+      - POSTGRES_DB=mini_project_altera
+  backend-mini-project-altera:
+    image: arifbugaresa/backend-mini-project-altera:v1
+    ports:
+      - 8080:8080
+    environment:
+      - APP_PORT=8000
+      - APP_ENV=development
+      - DB_DRIVER=postgres
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=rahasia
+      - DB_NAME=mini_project_altera
+    depends_on:
+      - postgres-mini-project-altera
